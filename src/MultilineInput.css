@@ -1,0 +1,18 @@
+.multilineInput {
+  display: inline;
+  background: transparent;
+  outline: none;
+  border: none;
+  max-width: 100%;
+  min-width: 1px;
+  word-wrap: break-word;
+}
+
+.multilineInput[title=''][contentEditable=true]:before {
+  content: attr(placeholder);
+  color:rgb(119, 119, 119);
+}
+
+.inlineBlock {
+  display: inline-block;
+}
