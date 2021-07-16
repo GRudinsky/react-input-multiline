@@ -2,13 +2,13 @@ import React, { useRef, useState } from 'react';
 import './MultilineInput.css';
 
 type Props = {
-  id: string,
-  onChange: Function,
-  value: string,
-  placeholder?: string,
-  additionalClasses?: string[],
-  disabled?: Boolean,
-  preventLineBreaks?: Boolean
+  id: string;
+  onChange: Function;
+  value: string;
+  placeholder?: string;
+  additionalClasses?: string[];
+  disabled?: Boolean;
+  preventLineBreaks?: Boolean;
 };
 
 export const MultilineInput = (props: Props) => {
@@ -19,14 +19,17 @@ export const MultilineInput = (props: Props) => {
     onChange,
     value,
     disabled = false,
-    preventLineBreaks
+    preventLineBreaks,
   } = props;
 
   const defaultValue = useRef(value),
     [titleValue, setTitleValue] = useState(value),
     divRef = useRef<HTMLDivElement | null>(null),
     initialClasses = ['multilineInput'],
-    classes = titleValue.length === 0 ? [...initialClasses, 'inlineBlock'] : initialClasses;
+    classes =
+      titleValue.length === 0
+        ? [...initialClasses, 'inlineBlock']
+        : initialClasses;
 
   additionalClasses && classes.push.apply(classes, additionalClasses);
 
@@ -38,9 +41,13 @@ export const MultilineInput = (props: Props) => {
     onChange(e);
   };
 
-  const preventLineBreaksOnType = (e: React.KeyboardEvent<HTMLInputElement>): void | boolean => e.key.toLowerCase() === 'enter' && e.preventDefault();
+  const preventLineBreaksOnType = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ): void | boolean => e.key.toLowerCase() === 'enter' && e.preventDefault();
 
-  const preventLineBreaksOnPaste = (e: React.ClipboardEvent<HTMLInputElement>): void | boolean => {
+  const preventLineBreaksOnPaste = (
+    e: React.ClipboardEvent<HTMLInputElement>
+  ): void | boolean => {
     e.preventDefault();
 
     let clipboardText = e.clipboardData.getData('text');
@@ -49,7 +56,7 @@ export const MultilineInput = (props: Props) => {
     const selection: any = window.getSelection();
     if (!selection.rangeCount) return false;
     selection.deleteFromDocument();
-    selection.getRangeAt(0).insertNode(document.createTextNode(clipboardText))
+    selection.getRangeAt(0).insertNode(document.createTextNode(clipboardText));
     selection.collapseToEnd();
 
     setTargetPropsAndCallOnChange(e);
