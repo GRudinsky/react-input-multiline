@@ -3,13 +3,13 @@ import './MultilineInput.css';
 
 type Props = {
   id: string,
-  onChange: Function;
+  onChange: Function,
   value: string,
-  placeholder?: string
+  placeholder?: string,
   additionalClasses?: string[],
-  disabled?: Boolean
+  disabled?: Boolean,
   preventLineBreaks?: Boolean
-}
+};
 
 export const MultilineInput = (props: Props) => {
   const {
@@ -32,7 +32,7 @@ export const MultilineInput = (props: Props) => {
 
   const setTargetPropsAndCallOnChange = (e: any): void => {
     const textValue = e.target.innerText.replace(/[\u200B]/g, '');
-    setTitleValue(textValue)
+    setTitleValue(textValue);
     e.target.value = textValue;
     e.target.name = e.target.id;
     onChange(e);

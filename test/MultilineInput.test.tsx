@@ -17,7 +17,7 @@ describe('<AutosizeEditableContent />', () => {
   });
 
   it('should render one div', () => {
-    wrapper = mount(<MultilineInput { ...contentProps } />);
+    wrapper = mount(<MultilineInput {...contentProps} />);
     const component = wrapper.find('MultilineInput').find('div');
     expect(component).toHaveLength(1);
     expect(component.props().placeholder).toBe(contentProps.placeholder);
@@ -29,7 +29,7 @@ describe('<AutosizeEditableContent />', () => {
   it('should push additional classes to classlist of the child div', () => {
     const additionalClasses = ['class1', 'class2'];
 
-    wrapper = mount(<MultilineInput { ...{ ...contentProps, additionalClasses } } />);
+    wrapper = mount(<MultilineInput {...{ ...contentProps, additionalClasses }} />);
     const component = wrapper.find('MultilineInput').find('div');
     expect(component.props().className).toEqual('multilineInput class1 class2');
   });
@@ -39,7 +39,7 @@ describe('<AutosizeEditableContent />', () => {
       key: 'Enter',
       preventDefault: jest.fn()
     };
-    wrapper = mount(<MultilineInput {...{ ...contentProps, preventLineBreaks : true } } />);
+    wrapper = mount(<MultilineInput {...{ ...contentProps, preventLineBreaks: true }} />);
     const component = wrapper.find('MultilineInput').find('div');
     component.simulate('keyDown', event);
     expect(event.preventDefault).toHaveBeenCalledTimes(1);
@@ -52,7 +52,7 @@ describe('<AutosizeEditableContent />', () => {
         innerText: ''
       }
     };
-    wrapper = mount(<MultilineInput { ...{ ...contentProps, value } } />);
+    wrapper = mount(<MultilineInput {...{ ...contentProps, value }} />);
     let component = wrapper.find('MultilineInput').find('div');
 
     expect(component.props().title).toEqual('a');
@@ -64,4 +64,3 @@ describe('<AutosizeEditableContent />', () => {
     expect(component.props().className).toEqual('multilineInput inlineBlock');
   });
 });
-

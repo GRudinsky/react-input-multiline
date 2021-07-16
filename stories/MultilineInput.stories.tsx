@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { MultilineInput} from '../src';
+import { MultilineInput } from '../src';
 
 const meta: Meta = {
   title: 'Welcome',
@@ -28,5 +28,5 @@ export const Default = Template.bind({});
 Default.args = {
   value: '',
   placeholder: 'This is a placeholder...',
-  name:'multilineInput'
+  name: 'multilineInput'
 };
