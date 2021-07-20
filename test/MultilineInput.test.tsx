@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { MultilineInput } from '../src/MultilineInput';
 
-describe('<AutosizeEditableContent />', () => {
+describe('<MultilineInput />', () => {
   const contentProps = {
     id: 'message',
     placeholder: 'Type your message here...',

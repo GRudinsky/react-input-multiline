@@ -1,12 +1,18 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Thing } from '../.';
+import { MultilineInput } from '../.';
 
 const App = () => {
   return (
     <div>
-      <Thing />
+      <MultilineInput
+        id="multinineInput"
+        value="some value"
+        onChange={(e: { target: { value: string } }) =>
+          console.log(e.target.value)
+        }
+      />
     </div>
   );
 };
