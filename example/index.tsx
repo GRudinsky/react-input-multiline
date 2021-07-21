@@ -12,6 +12,9 @@ const App = () => {
         onChange={(e: { target: { value: string } }) =>
           console.log(e.target.value)
         }
+        preventLineBreaks
+        placeholder="type something here..."
+        additionalClasses={['someClass']}
       />
     </div>
   );

@@ -1,37 +1,59 @@
 import React, { useRef, useState } from 'react';
-import './MultilineInput.css';
+import styled, { css } from 'styled-components';
+import {} from 'styled-components/cssprop';
 
 type Props = {
   id: string;
   onChange: Function;
   value: string;
-  placeholder?: string;
   additionalClasses?: string[];
+  placeholder?: string;
   disabled?: Boolean;
   preventLineBreaks?: Boolean;
 };
 
-export const MultilineInput = (props: Props) => {
+interface styledDivProps {
+  readonly title: { length: number };
+  readonly contentEditable: boolean;
+  readonly placeholder: string | undefined;
+}
+
+const placeHolderStyles = (prop: any) => css`
+  content: '${prop}';
+  color: rgb(119, 119, 119);
+`;
+
+const StyledDiv = styled.div<styledDivProps>`
+  display: ${(props) => (props.title.length > 0 ? 'inline' : 'inline-block')};
+  background: transparent;
+  outline: none;
+  border: none;
+  max-width: 100%;
+  min-width: 1px;
+  word-wrap: break-word;
+
+  &:after {
+    ${(props) =>
+      props.contentEditable &&
+      !props.title &&
+      placeHolderStyles(props.placeholder)}
+  }
+`;
+
+export const MultilineInput: React.FunctionComponent<Props> = (props) => {
   const {
     id,
-    additionalClasses,
     placeholder,
     onChange,
     value,
+    additionalClasses,
     disabled = false,
     preventLineBreaks,
   } = props;
 
   const defaultValue = useRef(value),
     [titleValue, setTitleValue] = useState(value),
-    divRef = useRef<HTMLDivElement | null>(null),
-    initialClasses = ['multilineInput'],
-    classes =
-      titleValue.length === 0
-        ? [...initialClasses, 'inlineBlock']
-        : initialClasses;
-
-  additionalClasses && classes.push.apply(classes, additionalClasses);
+    divRef = useRef<HTMLDivElement | null>(null);
 
   const setTargetPropsAndCallOnChange = (e: any): void => {
     const textValue = e.target.innerText.replace(/[\u200B]/g, '');
@@ -63,11 +85,11 @@ export const MultilineInput = (props: Props) => {
   };
 
   return (
-    <div
+    <StyledDiv
       title={titleValue}
       ref={divRef}
       id={id}
-      className={classes.join(' ')}
+      className={additionalClasses?.join(' ')}
       placeholder={placeholder}
       contentEditable={!disabled}
       onInput={setTargetPropsAndCallOnChange}

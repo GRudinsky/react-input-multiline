@@ -21,7 +21,6 @@ describe('<MultilineInput />', () => {
     const component = wrapper.find('MultilineInput').find('div');
     expect(component).toHaveLength(1);
     expect(component.props().placeholder).toBe(contentProps.placeholder);
-    expect(component.props().className).toBe('multilineInput');
     expect(component.props().id).toBe(contentProps.id);
     expect(component.text()).toEqual(contentProps.value);
   });
@@ -33,7 +32,7 @@ describe('<MultilineInput />', () => {
       <MultilineInput {...{ ...contentProps, additionalClasses }} />
     );
     const component = wrapper.find('MultilineInput').find('div');
-    expect(component.props().className).toEqual('multilineInput class1 class2');
+    expect(component.props().className).toContain('class1 class2');
   });
 
   it(`should cancel the key Down event for "Enter" key when preventLineBreaks is true`, () => {
@@ -49,22 +48,24 @@ describe('<MultilineInput />', () => {
     expect(event.preventDefault).toHaveBeenCalledTimes(1);
   });
 
-  it(`should add the "inlineBlock" clasa to the classList additional class when the value is empty string`, () => {
-    const value = 'a';
+  it(`should add value and name properties with values to event.target object on input`, () => {
     const event = {
       target: {
-        innerText: '',
+        id: contentProps.id,
+        innerText: 'some value',
       },
+      preventDefault: jest.fn(),
     };
-    wrapper = mount(<MultilineInput {...{ ...contentProps, value }} />);
-    let component = wrapper.find('MultilineInput').find('div');
-
-    expect(component.props().title).toEqual('a');
-    expect(component.props().className).toEqual('multilineInput');
+    wrapper = mount(<MultilineInput {...{ ...contentProps }} />);
+    const component = wrapper.find('MultilineInput').find('div');
     component.simulate('input', event);
-
-    component = wrapper.find('MultilineInput').find('div');
-    expect(component.props().title).toEqual('');
-    expect(component.props().className).toEqual('multilineInput inlineBlock');
+    expect(event).toEqual({
+      ...event,
+      target: {
+        ...event.target,
+        value: event.target.innerText,
+        name: event.target.id,
+      },
+    });
   });
 });
