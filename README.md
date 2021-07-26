@@ -79,6 +79,7 @@ The available props aren:
 | `id`                | value for the id selector and the DOM event.target.name | `string`   |
 | `onChange`          | subscribe to change events                              | `function` |
 | `value`             | control the current value                               | `string`   |
+| `style`             | style the component with inline styling                 | `object`   |
 | `additionalClasses` | add additional style classes                            | `string[]` |
 | `placeholder`       | text placeholder when the value is empty                | `string`   |
 | `disabled`          | disable the edit functionality                          | `boolean`  |

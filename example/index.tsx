@@ -14,7 +14,7 @@ const App = () => {
         }
         preventLineBreaks
         placeholder="type something here..."
-        additionalClasses={['someClass']}
+        style={{ border: '1px solid black', backgroundColor: 'yellow' }}
       />
     </div>
   );

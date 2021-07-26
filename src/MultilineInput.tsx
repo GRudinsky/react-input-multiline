@@ -7,6 +7,7 @@ type Props = {
   onChange: Function;
   value: string;
   additionalClasses?: string[];
+  style?: object;
   placeholder?: string;
   disabled?: Boolean;
   preventLineBreaks?: Boolean;
@@ -47,6 +48,7 @@ export const MultilineInput: React.FunctionComponent<Props> = (props) => {
     onChange,
     value,
     additionalClasses,
+    style,
     disabled = false,
     preventLineBreaks,
   } = props;
@@ -90,6 +92,7 @@ export const MultilineInput: React.FunctionComponent<Props> = (props) => {
       ref={divRef}
       id={id}
       className={additionalClasses?.join(' ')}
+      style={style}
       placeholder={placeholder}
       contentEditable={!disabled}
       onInput={setTargetPropsAndCallOnChange}
