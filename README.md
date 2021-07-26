@@ -74,16 +74,16 @@ export default function App() {
 
 The available props aren:
 
-| Prop                | Description                                             | Type       |
-| ------------------- | ------------------------------------------------------- | ---------- |
-| `id`                | value for the id selector and the DOM event.target.name | `string`   |
-| `onChange`          | subscribe to change events                              | `function` |
-| `value`             | control the current value                               | `string`   |
-| `style`             | style the component with inline styling                 | `object`   |
-| `additionalClasses` | add additional style classes                            | `string[]` |
-| `placeholder`       | text placeholder when the value is empty                | `string`   |
-| `disabled`          | disable the edit functionality                          | `boolean`  |
-| `preventLineBreaks` | prevent line breaks on keyboard and paste events        | `boolean`  |
+| Prop                | Description                                             | Type                                                                      |
+| ------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `id`                | value for the id selector and the DOM event.target.name | `string`                                                                  |
+| `onChange`          | subscribe to change events                              | `function`                                                                |
+| `value`             | control the current value                               | `string`                                                                  |
+| `style`             | style the component with inline styling                 | [`React.CSSProperties`](https://reactjs.org/docs/dom-elements.html#style) |
+| `additionalClasses` | add additional style classes                            | `string[]`                                                                |
+| `placeholder`       | text placeholder when the value is empty                | `string`                                                                  |
+| `disabled`          | disable the edit functionality                          | `boolean`                                                                 |
+| `preventLineBreaks` | prevent line breaks on keyboard and paste events        | `boolean`                                                                 |
 
 ## License
 

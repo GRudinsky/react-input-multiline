@@ -7,7 +7,7 @@ type Props = {
   onChange: Function;
   value: string;
   additionalClasses?: string[];
-  style?: object;
+  style?: React.CSSProperties;
   placeholder?: string;
   disabled?: Boolean;
   preventLineBreaks?: Boolean;
